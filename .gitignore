@@ -1,0 +1,22 @@
+# Maven target folder
+/target/
+
+# Eclipse files
+.project
+.classpath
+.settings/
+
+# IDE files
+*.iml
+*.idea/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Test reports (if you want them excluded)
+/reports/
