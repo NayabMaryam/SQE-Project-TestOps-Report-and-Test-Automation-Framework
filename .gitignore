@@ -20,3 +20,9 @@ Thumbs.db
 
 # Test reports (if you want them excluded)
 /reports/
+
+# Allure test reports (auto-generated)
+src/test/resources/reports/allure-results/*.json
+!src/test/resources/reports/allure-results/executor.json
+!src/test/resources/reports/allure-results/allure.properties
+src/test/resources/reports/allure-report/
