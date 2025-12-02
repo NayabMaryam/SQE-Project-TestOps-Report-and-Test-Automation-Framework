@@ -18,6 +18,10 @@ jobs:
         with:
           java-version: '8'
           distribution: 'temurin'
+      - name: Set up Chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: 'stable'  # or 'latest'
 
       - name: Cache Maven packages
         uses: actions/cache@v3
