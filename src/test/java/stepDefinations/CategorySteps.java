@@ -9,10 +9,10 @@ import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import io.github.bonigarcia.wdm.WebDriverManager;
-
 
 import java.util.List;
 
@@ -27,15 +27,31 @@ public class CategorySteps {
     @Before
     public void setup() {
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
+        
+        ChromeOptions options = new ChromeOptions();
+        
+        // Check if running in CI (GitHub Actions)
+        String ci = System.getenv("CI");
+        if (ci != null && ci.equals("true")) {
+            // Headless mode for CI
+            options.addArguments("--headless");
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
+            options.addArguments("--disable-gpu");
+            options.addArguments("--window-size=1920,1080");
+            options.addArguments("--remote-allow-origins=*");
+        } else {
+            // Normal mode for local development
+            options.addArguments("--start-maximized");
+        }
+        
+        driver = new ChromeDriver(options);
         wait = new WebDriverWait(driver, 20);
         driver.get(BASE_URL);
     }
 
     @When("I click on the {string} category")
     @Step("Clicking on category: {0}")
-   
     public void i_click_on_the_category(String category) {
         WebElement element = wait.until(
                 ExpectedConditions.elementToBeClickable(By.linkText(category))
