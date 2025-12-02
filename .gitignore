@@ -18,9 +18,6 @@ Thumbs.db
 # Logs
 *.log
 
-# Test reports (if you want them excluded)
-/reports/
-
 # Allure test reports (auto-generated)
 src/test/resources/reports/allure-results/*.json
 !src/test/resources/reports/allure-results/executor.json
